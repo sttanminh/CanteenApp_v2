@@ -1,0 +1,16 @@
+div {
+    top: 20px;
+    position: relative;
+    margin: 6%;
+}
+
+label{
+    padding-right: 7px;
+    font-weight: 700 ;
+}
+
+*{
+    text-align: center;
+    background-color: rgb(240, 223, 223);
+    font-size: 20px;
+}

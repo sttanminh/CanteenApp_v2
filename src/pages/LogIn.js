@@ -1,12 +1,20 @@
+import '../general.css';
+import '../css/LogIn.css'
+
 function LogIn() {
     return (
       <div>
-        <h1>asdasdadssda</h1>
-        <input placeholder="Username"></input>
-        <label>User Name</label>
+        <div>
+          <label>User Name</label>
+          <input placeholder="Username"></input>
+        </div>
 
-        <input placeholder="Username"></input>
-        <label>Password</label>
+        <div>
+          <label>Password</label>
+          <input placeholder="Username"></input>
+        </div>
+
+        <button> Sign In</button>
       </div>
     );
   }
