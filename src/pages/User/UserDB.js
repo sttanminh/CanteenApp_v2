@@ -1,4 +1,5 @@
 import '../../css/UserDB.css'
+import '../../general.css';
 
 
 
@@ -23,7 +24,8 @@ function UserDB() {
         <button id="logout"> Log out</button>
         <h1 id="userId"> 403 </h1>
         <h2> Current week:</h2>
-        {FoodListing()}
+        <div id="fooddiv">{FoodListing()}</div>
+        
        
       </div>
     );

@@ -1,3 +1,4 @@
+import '../../general.css';
 function CanteenDB() {
     return (
       <div>

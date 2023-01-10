@@ -1,3 +1,5 @@
+import '../../general.css';
+
 function AdminDB() {
     return (
       <div>
