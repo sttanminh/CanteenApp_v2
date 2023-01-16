@@ -1,5 +1,5 @@
 
-import '../../general.css';
+import '../../general.scss';
 function UserFoodDetail() {
     return (
       <div>

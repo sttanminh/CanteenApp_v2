@@ -1,5 +1,5 @@
-import '../../css/UserDB.css'
-import '../../general.css';
+import '../../css/UserDB.scss'
+import '../../general.scss';
 
 
 

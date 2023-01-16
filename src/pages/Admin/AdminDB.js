@@ -1,9 +1,17 @@
-import '../../general.css';
+import '../../general.scss';
+import '../../css/AdminDB.scss';
+import { useNavigate } from 'react-router-dom';
 
 function AdminDB() {
+
+    const navigate = useNavigate();
+
+
     return (
       <div>
-        <button> Log out</button>
+        <button id="logout" onClick={()=>{
+          navigate('/login')
+        }}> Log out</button>
       </div>
     );
   }

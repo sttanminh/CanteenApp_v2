@@ -1,9 +1,9 @@
-import '../general.css';
-import '../css/LogIn.css'
+import '../general.scss';
+import '../css/LogIn.scss'
 
 function LogIn() {
     return (
-      <div>
+      <div className='login'>
         <div>
           <label>User Name</label>
           <input placeholder="Username"></input>

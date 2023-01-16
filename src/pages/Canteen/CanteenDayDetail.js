@@ -1,4 +1,4 @@
-import '../../general.css';
+import '../../general.scss';
 function CanteenDayDetail() {
     return (
       <div>

@@ -1,4 +1,4 @@
-import '../../general.css';
+import '../../general.scss';
 function CanteenFoodOrder() {
     return (
       <div>
