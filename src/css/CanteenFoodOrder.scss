@@ -1,0 +1,23 @@
+.canteenFoodOrder{
+    position: relative;
+
+
+    label{
+        top:70px;
+        left:20px;
+    }
+
+    button{
+        background-color: transparent;
+        position: relative;
+    }
+    ul{
+        top: 70px;
+    }
+    #add{
+        left:100px;
+        border: 0px;
+        width: 30px;
+        top:71px
+    }
+}

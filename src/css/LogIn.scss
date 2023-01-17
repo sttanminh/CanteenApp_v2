@@ -1,15 +1,21 @@
 
 .login {
-    
-    label{
+
+    label{  
+            margin-top: 10px;
+            display: flex;
+            top: 80px;
             position: relative;
-            text-align: center;
+            align-items: center;
+            justify-content: center;
         }
     input{
+            top:80px;
             position: relative;
         }
 
     button{
+            top:60px;
             position: relative;
             margin-top: 10%;
         }
