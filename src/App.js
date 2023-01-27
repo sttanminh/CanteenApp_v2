@@ -4,7 +4,6 @@ import LogIn from './pages/LogIn';
 import AdminAddUser from './pages/Admin/AdminAddUser';
 import AdminDB from './pages/Admin/AdminDB';
 import CanteenDayDetai from './pages/Canteen/CanteenDayDetail';
-import CanteenDB from './pages/Canteen/CanteenDayDetail';
 import CanteenFoodOrder from './pages/Canteen/CanteenFoodOrder';
 import CanteenSearch from './pages/Canteen/CanteenSearch';
 import CanteenUpdateScheule from './pages/Canteen/CanteenUpdateSchedule';
@@ -13,7 +12,7 @@ import UserFoodDetail from './pages/User/UserFoodDetail';
 import UserFoodPick from './pages/User/UserFoodPick';
 import CanteenAddFood from './pages/Canteen/CanteenAddFood';
 import CanteenFoodDetail from './pages/Canteen/CanteenFoodDetail';
-
+import CanteenDB from './pages/Canteen/CanteenDB';
 
 
 function App() {

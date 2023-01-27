@@ -1,12 +1,26 @@
 .canteenUpdateSchedule{
+
+    #back{
+        position:fixed;
+        top: 14px;
+        left: 10px;
+        border: 0ch;
+        margin: 0;
+        width: auto;
+        background-color: transparent;
+   
+    }
     label{
         position: relative;
-        top: 15px;
+        top: 45px;
+        z-index: 2;
+
     }
     button{
         position: relative;
-        margin-top: 30px;
+        margin-top:30px;
         width: 80%;
         top: 30px;
+        background-color: transparent;
     }
 }

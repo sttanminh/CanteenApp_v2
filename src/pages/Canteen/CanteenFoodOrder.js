@@ -26,7 +26,9 @@ function CanteenFoodOrder() {
 
     return (
       <div className='canteenFoodOrder'>
-        <button id="back"> back </button>
+        <button id="back" onClick={()=>{
+        navigate('/canteenupdateschedule')
+      }}> back </button>
         <label id='sessionLabel'>Morning: </label>
         <button onClick={()=>{
           navigate('/canteenaddfood')

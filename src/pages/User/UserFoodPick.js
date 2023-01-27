@@ -1,7 +1,9 @@
 import '../../general.scss';
 import '../../css/UserFoodPick.scss'
+import { useNavigate } from 'react-router-dom';
 
 function UserFoodPick() {
+  const navigate = useNavigate();
 
 
   var morning = ["A","B","C","D","E","B","C","D","B","C","D"]
@@ -12,7 +14,9 @@ function UserFoodPick() {
     return(
       foods.map(i=>
             <li>
-                <button > {i}</button>
+                <button onClick={()=>{
+        navigate('/userfooddetail')
+      }}> {i}</button>
             </li>
         )
 
@@ -23,7 +27,9 @@ function UserFoodPick() {
 
     return (
       <div id='div'>
-        <button id="back"> back </button>
+        <button onClick={()=>{
+        navigate('/userdb')
+      }} id="back"> back </button>
         <label id='sessionLabel'>Morning: </label>
         <ul>
           {listingFood(morning)}
