@@ -11,69 +11,93 @@ function CanteenFoodOrder() {
   const accountRef = ref(db, "/account")
   const [accounts, setAccount] = useState([])
   const [foods, setFoods] = useState([])
+  const [morningState, setMorning] = useState([])
+  const [lunchState, setLunch] = useState([])
   const location = useLocation();
-  var morning = []
-  var lunch = []
+  
 
 
-function listingFood(foods){
+function listingFood(foodList){
+  console.log(foodList)
   return(
-    foods.map(i=>
+    foodList.map(i=>
           <li>
               <button  onClick={()=>{
-        navigate('/canteenfooddetail')
-      }}> {i}</button>
+                navigate('/canteenfooddetail', {state:{id: location.state.id, dateIndex: location.state.dateIndex}})
+              }}> {i.name}</button>
           </li>
       )
 
   )
 }
-function updateFood(foods){}
 
 
-function getFoods() {
-  console.log(location.state.dateIndex)
-  for (let i = 0; i < accounts.length; i++) {
-    if (accounts[i].id == location.state.id){
-      if (accounts[i].days[location.state.dateIndex].foods == undefined){
+function getFoods(accs) {
+  for (let i = 0; i < accs.length; i++) {
+    if (accs[i].id == location.state.id){
+      if (accs[i].days[location.state.dateIndex].foods == undefined){
         console.log("empty")
         return 
       }
-      console.log(accounts[i].days[location.state.dateIndex].foods)
-      setFoods( accounts[i].days[location.state.dateIndex].foods )
+      setFoods( accs[i].days[location.state.dateIndex].foods )
+      console.log(foods)
+
+
+      return
+      
+    
     }
   }
 }
+
+  function getFoodByType(foods,type){
+    var list = []
+    for (let i = 0; i < foods.length; i++) {
+      if (foods[i].type == type){
+        list.push(foods[i])
+      }
+    }
+    console.log(list)
+    return list
+  }
 
 
 
 
 
   useEffect(() => {
+    if (accounts){
+      setAccount([])
+    }
     const query = ref(db, "account");
     return onValue(query, (snapshot) => {
       const data = snapshot.val();
-
+      let temp_list = []
       if (snapshot.exists()) {
         Object.values(data).map((acc) => {
-          setAccount((accounts) => [...accounts, acc]);
+          temp_list.push(acc)
+          setAccount(temp_list);
+
         });
        
       }
-      getFoods()
-      console.log(foods)
-    });
-    }, []);
 
+      getFoods(temp_list)
+
+
+      temp_list = [] 
+
+
+
+    });
+    
+    }, []);
    
     
 
 
     return (
       <div className='canteenFoodOrder'>
-        {/* <button  onClick={()=>{
-        getFoods()
-      }}> test </button>  */}
         <button id="back" onClick={()=>{
         navigate('/canteenupdateschedule', {state:{id: location.state.id}})
       }}> back </button>
@@ -82,14 +106,17 @@ function getFoods() {
           navigate('/canteenaddfood', {state:{id: location.state.id, type: "morning", dateIndex: location.state.dateIndex}})
         }} id='add'>+</button>
         <ul>
-          {listingFood(foods)}
+          {
+            listingFood(getFoodByType(foods,"morning"))
+            }
+
         </ul>
         <label id='sessionLabel'>Lunch: </label>
         <button onClick={()=>{
           navigate('/canteenaddfood', {state:{id: location.state.id, type: "lunch", dateIndex: location.state.dateIndex}})
         }}  id='add'>+</button>
         <ul>
-          {listingFood(foods)}
+          {listingFood(getFoodByType(foods,"lunch"))}
         </ul>
        
       </div>

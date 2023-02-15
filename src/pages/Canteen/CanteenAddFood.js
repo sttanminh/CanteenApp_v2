@@ -4,6 +4,8 @@ import { useNavigate,useLocation } from 'react-router-dom';
 import {useState,useEffect,useRef} from 'react'
 import { onValue, ref ,set} from "firebase/database";
 import db from '../../firebase'
+import uuid from 'react-uuid';
+
 
 function CanteenAddFood() {
   let navigate = useNavigate()
@@ -39,7 +41,9 @@ function CanteenAddFood() {
     var foodObj = {
       name: food,
       type: location.state.type,
-      order: 0
+      order: 0,
+      id: uuid()
+
     }
     
 
