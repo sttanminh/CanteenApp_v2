@@ -10,6 +10,7 @@ function CanteenFoodOrder() {
   let navigate = useNavigate()
   const accountRef = ref(db, "/account")
   const [accounts, setAccount] = useState([])
+  const [foods, setFoods] = useState([])
   const location = useLocation();
   var morning = []
   var lunch = []
@@ -39,6 +40,7 @@ function getFoods() {
         return 
       }
       console.log(accounts[i].days[location.state.dateIndex].foods)
+      setFoods( accounts[i].days[location.state.dateIndex].foods )
     }
   }
 }
@@ -58,12 +60,13 @@ function getFoods() {
         });
        
       }
+      getFoods()
+      console.log(foods)
     });
-    
     }, []);
 
    
-
+    
 
 
     return (
@@ -79,14 +82,14 @@ function getFoods() {
           navigate('/canteenaddfood', {state:{id: location.state.id, type: "morning", dateIndex: location.state.dateIndex}})
         }} id='add'>+</button>
         <ul>
-          {listingFood(morning)}
+          {listingFood(foods)}
         </ul>
         <label id='sessionLabel'>Lunch: </label>
         <button onClick={()=>{
           navigate('/canteenaddfood', {state:{id: location.state.id, type: "lunch", dateIndex: location.state.dateIndex}})
         }}  id='add'>+</button>
         <ul>
-          {listingFood(lunch)}
+          {listingFood(foods)}
         </ul>
        
       </div>
