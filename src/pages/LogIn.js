@@ -1,41 +1,72 @@
 import '../general.scss';
 import '../css/LogIn.scss'
-import { useNavigate } from 'react-router-dom';
+import { useNavigate,useLocation } from 'react-router-dom';
 import db from '../firebase'
-import { onValue, ref } from "firebase/database";
+import { onValue, ref ,set} from "firebase/database";
 import { useState,useEffect,useRef } from "react"
 
 
 
-function LogIn() {
+function LogIn({route,navigation }) {
+  
 
   let navigate = useNavigate()
   const accountRef = ref(db, "/account")
   const [accounts, setAccount] = useState([])
-  let userame = ""
+  let username = ""
   let password = ""
+
+  function updateDays(id,date){
+    let day = {
+      date: date,
+      foods: []
+    }
+    for (let i = 0; i < accounts.length; i++) {
+      if (accounts[i].id === id){
+        console.log(accounts[i].days)
+        accounts[i].days.push(day)
+      } 
+    }
+    set(accountRef,accounts)
+
+  }
+
+  function resetDatabase() {
+    let current = []
+    for (let i = 0; i< 3; i++ ) {
+      current.push(accounts[i])
+    }
+    
+    set(accountRef,current)
+  }
+
 
 
 
   useEffect(() => {
-    if (accounts.lengtht == 0) {
-      return 
+    if (accounts){
+      setAccount([])
     }
     const query = ref(db, "account");
     return onValue(query, (snapshot) => {
       const data = snapshot.val();
-
+      let temp_list = []
       if (snapshot.exists()) {
         Object.values(data).map((acc) => {
-          setAccount((accounts) => [...accounts, acc]);
+          console.log(acc)
+          temp_list.push(acc)
+          setAccount(temp_list);
         });
+       
       }
+      temp_list = []
     });
+    
     
     }, []);
 
     function login(username, password){
-      
+      set(accountRef,accounts)
       for (let i = 0; i < accounts.length; i++) {
         if (accounts[i].username == username){
           if (accounts[i].password == password){
@@ -48,7 +79,8 @@ function LogIn() {
               return
             }
             else if (accounts[i].type == "canteen"){
-              navigate('/canteendb')
+              console.log(accounts[i].id)
+              navigate('/canteendb',{state: {id: accounts[i].id}})
               return
             }
           }
@@ -63,9 +95,12 @@ function LogIn() {
 
     return (
       <div className='login'>
+        <button onClick={()=>{
+          // resetDatabase()
+        }}> Testing </button>
         <div>
           <label>User Name</label>
-          <input placeholder="Username" onChange={(e) => userame = e.target.value}></input>
+          <input placeholder="Username" onChange={(e) => username = e.target.value}></input>
         </div>
 
         <div>
@@ -74,9 +109,8 @@ function LogIn() {
         </div>
 
         <button onClick={()=>{
-          console.log(accounts)
-          console.log(password)
-          login(userame,password)
+          console.log(username,password)
+          login(username,password)
         }}>Log in</button>
       </div>
     );
