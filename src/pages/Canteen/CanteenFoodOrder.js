@@ -11,8 +11,6 @@ function CanteenFoodOrder() {
   const accountRef = ref(db, "/account")
   const [accounts, setAccount] = useState([])
   const [foods, setFoods] = useState([])
-  const [morningState, setMorning] = useState([])
-  const [lunchState, setLunch] = useState([])
   const location = useLocation();
   
 

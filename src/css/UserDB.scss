@@ -1,40 +1,49 @@
-#logout {
-    position: fixed;
-    top: 16px;
-    right: 20px;
-    margin: 0;
-    border: 0ch;
-}
+.userBD{
+    button {
+        width: fit-content;
+    }
 
-div{
-    margin: 0;
-    padding-top: 0;
-}
+    #logout {
+        position: fixed;
+        top: 16px;
+        right: 20px;
+        margin: 0;
+        border: 0ch;
+    }
+
+    div{
+        margin: 0;
+        padding-top: 0;
+    }
 
 
-#userId {
-    position: fixed;
-    top: 16px;
-    left: 40px;
-    margin: 0;
-}
+    #userId {
+        position: fixed;
+        top: 16px;
+        left: 40px;
+        margin: 0;
+    }
 
-#food{
-    padding-top: 0;
-    margin-top: 25px;
-    border-radius: 20px;
-    width: 50%;
-}
+    #food{
+        padding-top: 0;
+        margin-top: 25px;
+        border-radius: 20px;
+        width: 50%;
+    }
 
-#fooddiv{
-    position: relative;
-    top: 70px;
-    background-color: transparent
-    ;
-}
+    #fooddiv{
+        position: relative;
+        top: 70px;
+        background-color: transparent
+        ;
+    }
 
-h2{
-    position: relative;
-    top: 65px;
-    background-color: transparent;
+    h2{
+        position: relative;
+        top: 65px;
+        background-color: transparent;
+    }
+    h3{
+        position: relative
+    }
 }

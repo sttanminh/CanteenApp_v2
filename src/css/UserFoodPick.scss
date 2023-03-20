@@ -1,47 +1,49 @@
+.userFoodPick{
+
+    button{
+        position: relative;
+        margin: 0;
+        width: 25%;
+        margin-top: 10px;
+    }
+
+    #UserPickLabel{
+        position:relative;
+        display: flex;
+        left:10px;
+        margin: 20px;
+        margin-bottom: 0px;
+        
+    }
 
 
-button{
-    position: relative;
-    margin: 0;
-    width: 25%;
-    margin-top: 10px;
-}
+    ul{
+        position: relative;
+    }
 
-#UserPickLabel{
-    position:relative;
-    display: flex;
-    left:10px;
-    margin: 20px;
-    margin-bottom: 0px;
-    
-}
+    li{
+        position: relative;
+        margin: 10px;
+        display: inline;
+    }
 
+    #back{
+        position:fixed;
+        top: 16px;
+        left: 16px;
+        border: 0ch;
+    }
 
-ul{
-    position: relative;
-}
+    #div{
+        position: relative;
+        top: 100px;
+        background-color: transparent;
+    }
+    #sessionLabel{
+        position:relative;
+        padding: 0;
+        margin: 0;
+        padding-right: 0;
+    }
 
-li{
-    position: relative;
-    margin: 10px;
-    display: inline;
-}
-
-#back{
-    position:fixed;
-    top: 16px;
-    left: 16px;
-    border: 0ch;
-}
-
-#div{
-    position: relative;
-    top: 100px;
-    background-color: transparent;
-}
-#sessionLabel{
-    position:relative;
-    padding: 0;
-    margin: 0;
-    padding-right: 0;
 }

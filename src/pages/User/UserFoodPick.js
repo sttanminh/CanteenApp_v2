@@ -26,7 +26,7 @@ function UserFoodPick() {
 
 
     return (
-      <div id='div'>
+      <div id='userFoodPick'>
         <button onClick={()=>{
         navigate('/userdb')
       }} id="back"> back </button>
