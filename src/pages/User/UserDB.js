@@ -10,6 +10,7 @@ import { useNavigate,useLocation } from 'react-router-dom';
 function UserDB() {
   const navigate = useNavigate();
   const [accounts, setAccount] = useState([])
+  const location = useLocation();
   const today = new Date()
   const canteen1Index = 0
   const canteen2Index = 1
@@ -41,36 +42,20 @@ function UserDB() {
     
     }, []);
 
-    function getFoodByDate(canteen, date, account){
-      let foods = []
-      let canteenID = -1
-      if (canteen == 1) {
-        canteenID = canteen1Index
-      }
-      else{
-        canteenID = canteen2Index
-      }
-      for (var i = 0; i < account[canteenID].days.length; i++){
-        if (account[canteenID].days[i].date == date){
-          if (account[canteenID].days[i].foods){
-            console.log("not thing yet")
-            return []
-          }
-          
-          foods = account[canteenID].days[i].foods
-          return foods
-        }
-      }
-    }
+  
+
 
     function getAvailableDay(){
       let days = []
       for (let i = 0; i < accounts.length; i++){
-        for (let j = 0; j < accounts[i].days.length; j++){
-          if (!(days.includes(accounts[i].days[j].date)) && (accounts[i].days[j].foods) ){
-            days.push(accounts[i].days[j].date)
-          }
+        if (accounts[i].days){
+          let daysList = accounts[i].days.filter(Boolean)
+          for (let j = 0; j < daysList.length; j++){
+            if (!(days.includes(daysList[j].date)) && (daysList[j].foods) ){
+              days.push(daysList[j].date)
+            }
 
+          }
         }
       }
       console.log(days)
@@ -91,7 +76,7 @@ function UserDB() {
       items.map(d =>
         <div>
           <button  onClick={()=>{
-        navigate('/userfoodpick')
+        navigate('/userfoodpick', {state:{id: location.state.id, date:d, accounts: accounts }})
       }} > {d} </button>
         </div>)
     )

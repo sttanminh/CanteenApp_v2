@@ -13,6 +13,7 @@ import UserFoodPick from './pages/User/UserFoodPick';
 import CanteenAddFood from './pages/Canteen/CanteenAddFood';
 import CanteenFoodDetail from './pages/Canteen/CanteenFoodDetail';
 import CanteenDB from './pages/Canteen/CanteenDB';
+import CanteenDays from './pages/Canteen/CanteenDays';
 
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
         <BrowserRouter>
         <Routes>
         <Route path='/canteenfooddetail' element={<CanteenFoodDetail/>}></Route>
+          <Route path='/canteendays' element={<CanteenDays/>}></Route>
           <Route path='/canteenaddfood' element={<CanteenAddFood/>}></Route>
           <Route path='/login' element={<LogIn/>}></Route>
           <Route path='/userdb' element={<UserDB/>}></Route>

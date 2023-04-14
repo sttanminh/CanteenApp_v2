@@ -1,10 +1,12 @@
 import '../../general.scss';
 import '../../css/AdminDB.scss';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate,useLocation } from 'react-router-dom';
+import { useEffect } from 'react';
 
 function AdminDB() {
 
     const navigate = useNavigate();
+    const location = useLocation();
 
 
     return (
@@ -14,7 +16,9 @@ function AdminDB() {
         }}> Log out</button>
 
         <div className='admindb'>
-            <button>Add user</button>
+            <button onClick={()=>{
+        navigate('/adminadduser', {state: {id: location.state.id}})
+      }}>Add user</button>
             <button>Update schedule</button>
             <button>Food order</button>
             <button>Search user</button>

@@ -14,7 +14,7 @@ function CanteenFoodOrder() {
   const location = useLocation();
   
 
-
+// Displaying food to hmtl format
 function listingFood(foodList){
   console.log(foodList)
   return(
@@ -28,7 +28,6 @@ function listingFood(foodList){
 
   )
 }
-
 
 function getFoods(accs) {
   for (let i = 0; i < accs.length; i++) {

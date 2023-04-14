@@ -68,14 +68,16 @@ function LogIn({route,navigation }) {
     function login(username, password){
       set(accountRef,accounts)
       for (let i = 0; i < accounts.length; i++) {
+        console.log(i)
         if (accounts[i].username == username){
           if (accounts[i].password == password){
             if (accounts[i].type == "admin"){
-              navigate('/admindb')
+              navigate('/admindb',{state: {id: accounts[i].id}})
               return
             }
             else if (accounts[i].type == "user"){
-              navigate('/userdb')
+              console.log("asdasd")
+              navigate('/userdb',{state: {id: accounts[i].id}})
               return
             }
             else if (accounts[i].type == "canteen"){

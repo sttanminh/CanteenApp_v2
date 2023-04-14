@@ -20,9 +20,11 @@ function CanteenDB() {
 
       <div className='admindb'>
           <button onClick={()=>{
-        navigate('/canteenupdateschedule', {state: {id: id}})
+        navigate('/canteenupdateschedule', {state: {id: location.state.id}})
       }}>Update schedule</button>
-          <button>Food order</button>
+          <button onClick={()=>{
+        navigate('/canteendays', {state: {id: location.state.id}})
+      }}>Food order</button>
           <button>Search user</button>
       </div>
 
