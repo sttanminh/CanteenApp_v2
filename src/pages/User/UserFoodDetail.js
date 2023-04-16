@@ -65,6 +65,9 @@ function UserFoodDetail() {
       set(foodRef,daysList);
     }
 
+
+    
+
   return (
     <div className='canteenFoodDetail'>
       <h1> Date </h1>
