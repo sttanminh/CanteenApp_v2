@@ -25,7 +25,9 @@ function CanteenDB() {
           <button onClick={()=>{
         navigate('/canteendays', {state: {id: location.state.id}})
       }}>Food order</button>
-          <button>Search user</button>
+          <button onClick={()=>{
+        navigate('/canteensearch', {state: {id: location.state.id}})
+      }}>Search user</button>
       </div>
 
 

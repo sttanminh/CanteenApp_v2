@@ -97,9 +97,7 @@ function LogIn({route,navigation }) {
 
     return (
       <div className='login'>
-        <button onClick={()=>{
-          // resetDatabase()
-        }}> Testing </button>
+       
         <div>
           <label>User Name</label>
           <input placeholder="Username" onChange={(e) => username = e.target.value}></input>
