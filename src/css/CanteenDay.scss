@@ -1,0 +1,12 @@
+.canteenDays {
+    position: relative;
+    display: flex; /* Add this line */
+    flex-direction: column; /* Align elements vertically */
+    align-items: flex-start; /* Adjust vertical alignment to the top */
+    align-items: center;
+    h1 {
+    //   width: fit-content;
+      margin-top: 50px;
+    }
+  }
+  

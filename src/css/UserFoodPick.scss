@@ -1,39 +1,50 @@
 #userFoodPick {
+    text-align: left;
     display: flex;
     flex-direction: column;
     align-items: center;
-    
+    display: flex;
     h1 {
-      margin-top: 1rem;
+      margin-top: 50px;
       margin-bottom: 0.5rem;
+      font-size: 50px;
+
     }
-    
-    label#sessionLabel {
-      font-weight: bold;
-      margin-top: 1rem;
-      font-size: 1.2rem; /* adjust font size for session labels */
+    h2 {
+      margin-bottom: 20px;
     }
-    
+
+
+   
+
     ul {
       list-style: none;
       margin: 0;
       padding: 0;
       
       li {
-        margin-top: 0.5rem;
+        display: flex;
+        height: min-content;
         font-size: 1rem; /* adjust font size for food names */
         white-space: nowrap;
-        overflow: hidden;
         text-overflow: ellipsis; /* display "..." when text overflows */
         text-align: left; /* align each food option to the left */
         
+        input{
+          width: 20px;
+          top: 5px;
+          margin-right: 10px;
+        }
+        
         label {
+          position: relative;
+          color: black;
           display: flex;
           align-items: center;
           cursor: pointer;
-          
+          top: 2px;
           span {
-            margin-left: 0.5rem;
+
           }
         }
       }
@@ -47,6 +58,42 @@
     
     button#submit {
       margin-top: 1rem;
+    }
+    #adjustadd{
+      border: 0;
+      margin: 0;
+      left: 0;
+      float: left;
+      padding: 3px;
+    }
+    #adjustsub{
+      border: 0;
+      margin: 0;
+      left: 0;
+      float: right;
+    }
+    #adjust_box{
+      border: 2px;
+      border-color: black;
+      margin: 3px;
+      border-style: solid;
+      border-radius: 20px;
+      padding: 5px;
+      width: 200px;
+    }
+    #item-count{
+      margin-left: 10px;
+    }
+    #order{
+      width: 200px;
+    }
+    #ordered{
+      position: absolute ;
+      top: 15px;
+      right: 10px;
+      margin: 0;
+      border: 0;
+      width: min-content;
     }
   }
   

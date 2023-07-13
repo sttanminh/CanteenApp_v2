@@ -14,6 +14,7 @@ import CanteenAddFood from './pages/Canteen/CanteenAddFood';
 import CanteenFoodDetail from './pages/Canteen/CanteenFoodDetail';
 import CanteenDB from './pages/Canteen/CanteenDB';
 import CanteenDays from './pages/Canteen/CanteenDays';
+import UserOrder from './pages/User/UserOrder';
 
 
 function App() {
@@ -29,6 +30,7 @@ function App() {
           <Route path='/userdb' element={<UserDB/>}></Route>
           <Route path='/userfooddetail' element={<UserFoodDetail/>}></Route>
           <Route path='/userfoodpick' element={<UserFoodPick/>}></Route>
+          <Route path='/userOrder' element={<UserOrder/>}></Route>
           <Route path='/adminadduser' element={<AdminAddUser/>}></Route>
           <Route path='/admindb' element={<AdminDB/>}></Route>
           <Route path='/canteendb' element={<CanteenDB/>}></Route>

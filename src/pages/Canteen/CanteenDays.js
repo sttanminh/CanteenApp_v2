@@ -1,5 +1,5 @@
 import '../../general.scss';
-// import '../../css/CannteenDayDetail.scss'
+import '../../css/CanteenDay.scss';
 import { useNavigate,useLocation } from 'react-router-dom';
 import { onValue, ref ,set} from "firebase/database";
 import db from '../../firebase'
@@ -41,8 +41,8 @@ function CanteenDays() {
     const canteenDays = accounts[location.state.id].days.filter(Boolean);
     
     return (
-        <div>
-        <button onClick={()=>{
+        <div className='canteenDays'>
+        <button id='back' onClick={()=>{
         navigate('/canteendb', {state: {id: location.state.id}})
       }}> Back</button>
         <h1>Canteen 1</h1>

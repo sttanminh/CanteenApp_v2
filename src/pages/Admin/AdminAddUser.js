@@ -9,7 +9,7 @@ function AdminAddUser() {
   const handleSubmit = (e) => {
     e.preventDefault();
     const password = username;
-    const id = Math.floor(Math.random() * 10000) + 1
+    const id = Math.floor(Math.random() * 10000000) + 1
     // Create a new user object
     const newUser = {
       id: id, // Generate a unique ID

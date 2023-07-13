@@ -32,7 +32,7 @@ function CanteenDayDetail() {
   // Function to get the food details for a specific date and session
   function getFoodDetails(date, session) {
     let user 
-    if (location.state.id  == 0){
+    if (location.state.id  == 1){
       user = "canteen01"
     }
     else{

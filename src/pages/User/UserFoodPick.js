@@ -38,57 +38,107 @@ if (isLoading) {
 }
 
 
-function handleFoodSelection(food, canteenIndex) {
-  food['canteenId'] = canteenIndex
+
+function handleFoodSelection(food, canteenIndex, action) {
+  food['canteenId'] = canteenIndex;
   const updatedFoodList = [...foodList];
-  const existingIndex = updatedFoodList.findIndex(f => f.id === food.id && f.canteenId === canteenIndex);
-  if (existingIndex !== -1) {
-    updatedFoodList.splice(existingIndex, 1);
-  } else {
-    updatedFoodList.push({ ...food, canteenId: canteenIndex });
+
+  if (action === 'add') {
+    updatedFoodList.push({ ...food, canteenId: canteenIndex, quantity: 1 });
+  } else if (action === 'remove') {
+    const existingIndex = updatedFoodList.findIndex(
+      f => f.id === food.id && f.canteenId === canteenIndex
+    );
+    if (existingIndex !== -1) {
+      updatedFoodList[existingIndex].quantity -= 1;
+      if (updatedFoodList[existingIndex].quantity === 0) {
+        updatedFoodList.splice(existingIndex, 1);
+      }
+    }
   }
+
   setFoodList(updatedFoodList);
-  console.log(updatedFoodList)
-  console.log("Food:", foodList)
+  console.log(updatedFoodList);
+  console.log("Food:", foodList);
 }
+
 
 function listingFood(foods, type, canteen) {
   if (!accounts || foods.length === 0) {
     return (
       <div>
-        <p>Nothing available for {type} session in canteen {canteen}</p>
       </div>
-    )
+    );
   }
+
   return (
     <ul>
-      {foods.filter(i => i.type === type).map(i => (
-        <li key={i.id}>
-          <label>
-            <input
-              type="checkbox"
-              
-              onChange={() => 
-                handleFoodSelection(i,canteen)}
-            />
-            <span onClick={() => navigate('/userfooddetail', { state: { food: i, date: location.state.date, id: location.state.id, accounts: accounts, canteen: canteen } })}>{i.name}</span>
-          </label>
-        </li>
-      ))}
+      {foods.filter(i => i.type === type).map(i => {
+        const itemCount = foodList.filter(
+          food => food.id === i.id && food.canteenId === canteen
+        ).length;
+        return (
+          <li key={i.id}>
+            <label>
+              <div  id='adjust_box'>
+              <input
+                id='adjustadd'
+                type="button"
+                value="+"
+                onClick={() => handleFoodSelection(i, canteen, 'add')}
+              />
+              <span
+                onClick={() =>
+                  navigate('/userfooddetail', {
+                    state: {
+                      food: i,
+                      date: location.state.date,
+                      id: location.state.id,
+                      accounts: accounts,
+                      canteen: canteen,
+                    },
+                  })
+                }
+              >
+                {i.name}
+              </span>
+              <input
+                id='adjustsub'
+                type="button"
+                value="-"
+                onClick={() => handleFoodSelection(i, canteen, 'remove')}
+              />
+              </div>
+              <span id="item-count">{itemCount}</span>
+            </label>
+          </li>
+        );
+      })}
     </ul>
   );
 }
 
+
+
   
   function getFoodByDate(canteen, date, account){
+    console.log(account, canteen, account[canteen])
+    if ("days"in account[canteen]){
+    }
+    else{
+      return []
+    }
     const daysList = account[canteen].days.filter(Boolean)
+    console.log(daysList)
     for (var i = 0; i < daysList.length; i++){
+      console.log(daysList[i].date, date,daysList[i].date == date)
       if (daysList[i].date == date){
         if (!daysList[i].foods){
           console.log("not thing yet")
           return []
         }
         let foods = daysList[i].foods
+        console.log(foods)
         return foods
       }
     }
@@ -123,6 +173,11 @@ function listingFood(foods, type, canteen) {
     }
   }
   function getDayIndexByDate(canteenIndex, date) {
+    if ("days" in location.state.accounts[canteenIndex]){
+    }
+    else{
+      return []
+    }
     const daysList = location.state.accounts[canteenIndex].days.filter(Boolean)
     return daysList.findIndex(day => day.date === date);
   }
@@ -132,7 +187,6 @@ function listingFood(foods, type, canteen) {
     const daysList = location.state.accounts[canteenIndex].days.filter(Boolean)
     const foods = daysList[dayIndex].foods.filter(food => food != null);
     const foodIndex = foods.findIndex(food => food.id === foodId);
-    console.log('Food:', foods[foodIndex]);
     return foodIndex;
   }
     
@@ -141,7 +195,6 @@ function listingFood(foods, type, canteen) {
       const daysList = location.state.accounts[canteenIndex].days.filter(Boolean)
       const foods = daysList[dayIndex].foods.filter(food => food != null);
       const foodIndex = foods.findIndex(food => food.id === foodId);
-      console.log('Food:', foods[foodIndex]);
       return foodIndex;
     }
 
@@ -158,43 +211,43 @@ function listingFood(foods, type, canteen) {
     const foodRef = ref(db, "/account/" + canteenIndex + "/days/"  );
     const foodsList = daysList[dayIndex].foods.filter(Boolean)
     const foodOrder = foodsList[foodIndex].order;
-    if (!foodOrder){
-      console.log("empty")
-      foodsList[foodIndex]['order'] = [accountId];
+    console.log(foodOrder)
+    if (!foodOrder || foodOrder == 0){
+      foodsList[foodIndex]['order'] = [location.state.id];
       daysList[dayIndex]['foods'] = foodsList
+      console.log(daysList)
       set(foodRef,daysList);
       return;
     }
-    console.log(daysList[dayIndex].foods[foodIndex]['order'])
     daysList[dayIndex].foods[foodIndex]['order'].push(accountId)
-    console.log(daysList[dayIndex].foods[foodIndex]['order'])
     set(foodRef,daysList);
   }
 
   return (
     <div id='userFoodPick'>
-      {console.log(accounts)}
+      {console.log(location.state.date)}
       <button onClick={()=>{navigate('/userdb',{state:{id: location.state.id }})}} id="back"> back </button>
+      <button onClick={()=>{navigate('/userOrder',{state:{date: location.state.date ,id: location.state.id }})}} id="ordered"> 🛒 </button>
       <h1>Canteen 1</h1>
-      <label id='sessionLabel'>Morning: </label>
-      <ul>
-        {listingFood(getFoodByDate(0,location.state.date,accounts), "morning",0)}
-      </ul>
-      <label id='sessionLabel'>Lunch: </label>
-      <ul>
-        {listingFood(getFoodByDate(0,location.state.date,accounts), "lunch",0)}
-      </ul>
-
-      <h1>Canteen 2</h1>
-      <label id='sessionLabel'>Morning: </label>
+      <h2 id='sessionLabel'>Morning: </h2>
       <ul>
         {listingFood(getFoodByDate(1,location.state.date,accounts), "morning",1)}
       </ul>
-      <label id='sessionLabel'>Lunch: </label>
+      <h2 id='sessionLabel'>Lunch: </h2>
       <ul>
         {listingFood(getFoodByDate(1,location.state.date,accounts), "lunch",1)}
       </ul>
-      <button onClick={()=>{
+
+      <h1>Canteen 2</h1>
+      <h2 id='sessionLabel'>Morning: </h2>
+      <ul>
+        {listingFood(getFoodByDate(2,location.state.date,accounts), "morning",2)}
+      </ul>
+      <h2 id='sessionLabel'>Lunch: </h2>
+      <ul>
+        {listingFood(getFoodByDate(2,location.state.date,accounts), "lunch",2)}
+      </ul>
+      <button id='order' onClick={()=>{
         submitFoodSelection()
       }}> Order </button>
     </div>

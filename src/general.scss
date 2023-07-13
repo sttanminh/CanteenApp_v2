@@ -9,12 +9,13 @@ label{
 
 *{
     text-align: center;
+    align-items: center;
     background-color: rgb(185, 156, 156);
     font-size: 110%;
     margin: 0;
     padding: 0;
 }
-
+z
 input{
     padding-top: 10px;
     margin-bottom: 10px;
@@ -25,4 +26,23 @@ input{
 
 #logout{
     width: auto;
+    position: absolute;
+    top: 0;
+    right: 20px;
+    border: 0;
 }
+
+#back {
+    position: absolute;
+    top: -9px;
+    left: -25px;
+    border: 0;
+    margin: 0;
+    background-color: transparent;
+    width: fit-content;
+  }
+
+  button{
+    border-radius: 10px;
+    padding: 5px;
+  }

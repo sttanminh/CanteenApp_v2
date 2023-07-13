@@ -76,6 +76,7 @@ function UserDB() {
       items.map(d =>
         <div>
           <button  onClick={()=>{
+            console.log(location.state.id)
         navigate('/userfoodpick', {state:{id: location.state.id, date:d, accounts: accounts }})
       }} > {d} </button>
         </div>)
@@ -91,11 +92,10 @@ function UserDB() {
         <button id="logout" onClick={()=>{
         navigate('/login')
       }}> Log out</button>
-        <h1 id="userId"> 403 </h1>
         <h2> User dashboard:</h2>
 
         <div id="fooddiv">{listing(getAvailableDay())}</div>
-        
+        {console.log()}
        
       </div>
     );

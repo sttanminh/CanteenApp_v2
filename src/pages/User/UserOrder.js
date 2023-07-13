@@ -2,15 +2,16 @@ import { useState, useEffect } from "react";
 import { onValue, ref } from "firebase/database";
 import { useNavigate,useLocation } from 'react-router-dom';
 import db from "../../firebase";
-import '../../css/CanteenSearch.scss'
+import '../../css/UserOrder.scss'
 
 
-function CanteenSearch() {
+function UserOrder() {
   const [searchValue, setSearchValue] = useState("");
-  const [selectedDate, setSelectedDate] = useState("");
   const [orderedFoodList, setOrderedFoodList] = useState([]);
+  
   const [accounts, setAccounts] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [orderLoading, setOrderLoading] = useState(true);
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -26,35 +27,31 @@ function CanteenSearch() {
         });
       }
       temp_list = [];
+
       setIsLoading(false);
+      console.log("done")
     });
+
   }, []);
 
-  const handleSearch = () => {
-    const dateString = selectedDate.toString();
-    const dateParts = dateString.split("-");
-    const formattedDate = `${dateParts[2]}/${dateParts[1]}/${dateParts[0]}`;
-    console.log(formattedDate)
-
-    if (!selectedDate || !searchValue) {
-      return;
-    }
-
+  function searchOrder(){
+    let date = location.state.date
 
     const orderedFoods = [];
     //Check in canteen 1
     let canteen1 = accounts[1]
     let canteen1_day = null
+    console.log(accounts)
     console.log(canteen1)
     for (let i=0; i< canteen1.days.length; i++ ){
 
-      if (canteen1.days[i].date == formattedDate){
+      if (canteen1.days[i].date == date){
         canteen1_day = canteen1.days[i]
         for ( let j = 0; j < canteen1_day.foods.length; j++){
           let food = canteen1_day.foods[j]
           console.log(food)
           for (let k=0; k < food.order.length; k++ ){
-            if (food.order[k] == searchValue){
+            if (food.order[k] == location.state.id){
               orderedFoods.push(food)
             }
           }
@@ -66,7 +63,6 @@ function CanteenSearch() {
     setOrderedFoodList([...orderedFoods])
     //Check in canteen 2
     let canteen2 = accounts[2]
-
   }
 
 
@@ -93,27 +89,23 @@ function CanteenSearch() {
   if (isLoading) {
     return <div>Loading...</div>;
   }
+  else{
+    if (orderLoading){
+    searchOrder()
+    setOrderLoading(false)
+    }
+  }
+  
 
   return (
-    <div className="CanteenSearch">
+    <div className="UserOrder">
       <button onClick={()=>{navigate('/canteendb',{state:{id: location.state.id }})}} id="back"> back </button>
-      <input
-        id="idinput"
-        type="text"
-        placeholder="UserID"
-        value={searchValue}
-        onChange={(e) => setSearchValue(e.target.value)}
-      />
-      <input
-        type="date"
-        value={selectedDate}
-        onChange={(e) => setSelectedDate(e.target.value)}
-      />
-      <button id="searchButton" onClick={handleSearch}>Search</button>
-      {foodordered(orderedFoodList, "lunch")}
+      <div id="foodDiv">
+        {foodordered(orderedFoodList, "lunch")}
+      </div>
     
     </div>
   );
 }
 
-export default CanteenSearch;
+export default UserOrder;

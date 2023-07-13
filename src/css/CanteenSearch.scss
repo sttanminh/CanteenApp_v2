@@ -1,0 +1,25 @@
+.CanteenSearch{
+    *{
+        position: relative;
+    }
+    position: relative;
+    p{
+        float: left;
+        margin: 2px;
+        font-size: 23px;
+    }
+
+    #idinput{
+        margin-top: 70px;
+        width: 120px;
+        margin-bottom: 2px;
+        border: 2px;
+        border: solid;
+    }
+   input{
+    border-radius: 4px;
+   }
+   #searchButton{
+    background-color: rgba(39, 38, 38, 0.3); 
+   }
+}

@@ -76,7 +76,8 @@ function LogIn({route,navigation }) {
               return
             }
             else if (accounts[i].type == "user"){
-              console.log("asdasd")
+              console.log(accounts[i])
+              console.log(accounts[i].id)
               navigate('/userdb',{state: {id: accounts[i].id}})
               return
             }

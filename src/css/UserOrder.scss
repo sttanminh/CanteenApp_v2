@@ -1,0 +1,22 @@
+.UserOrder {
+    position: absolute;
+    /* Add clearfix to contain floated elements */
+    &:after {
+      content: "";
+      display: table;
+      clear: both;
+    }
+  
+    p {
+      position: relative;
+      margin: 2px;
+      font-size: 23px;
+      align-items: center;
+      width: 200px;
+    }
+  
+    #foodDiv {
+      margin-top: 100px
+    }
+  }
+  
